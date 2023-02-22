@@ -1,17 +1,30 @@
-// import './style.css'
+const createGrid = () => {
+    const grid = document.createElement('div')
+    grid.classList.add('grid')
+    return grid
+}
 
-const app = document.getElementById('app')
-
-const grid = document.createElement('div')
-grid.classList.add('grid')
-
-for (let i = 0; i < 9; i++) {
+const createCell = (i) => {
     const cell = document.createElement('div')
     cell.classList.add('cell')
 
     cell.dataset.id = i
-
-    grid.appendChild(cell)
+    cell.addEventListener("click", () => console.log(i));
+    return cell
 }
 
-app.appendChild(grid)
+const generateGrid = () => {
+    const grid = createGrid()
+    for (let i = 0; i < 9; i++) {
+        const cell = createCell(i)
+        grid.appendChild(cell)
+    }
+    return grid
+}
+
+const initialApp = (app) => {
+    const grid = generateGrid()
+    app.appendChild(grid)
+}
+
+initialApp(document.getElementById('app'))
