@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -51,7 +53,6 @@ body {
   .x::after {
     content: "❌";
   }
-  
   .o::after {
     content: "⭕";
   }
