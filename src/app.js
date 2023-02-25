@@ -39,14 +39,25 @@ resultText.style.color = 'red'
 
 const restartButton = document.createElement("button");
 restartButton.textContent = 'Restart';
-restartButton.classList.add("btn")
+restartButton.classList.add("btn");
+
+restartButton.addEventListener('click', () => {
+    result.remove();
+
+    const cellDiv = document.querySelectorAll(".cell");
+    cellDiv.forEach((cell) => cell.classList.remove('x', 'o'));
+
+    xState = [];
+    oState = [];
+
+    xTurn = true
+})
+
 
 result.appendChild(resultText);
 result.appendChild(restartButton);
 
 app.appendChild(grid)
-
-// app.appendChild(result)
 
 const cellDiv = document.querySelectorAll('.cell');
 
@@ -60,14 +71,18 @@ const turn = (event) => {
     const element = event.target;
     if (element.classList.contains('x') || element.classList.contains('o'))
         return;
-    
+
     drawCell(element, xTurn);
 
     saveTurn(parseInt(element.dataset.id), xTurn);
 
-    xTurn = !xTurn;
 
-    console.log(xState, oState)
+    if (xState.length + oState.length === 9) {
+        app.appendChild(result);
+
+        return
+    }
+    xTurn = !xTurn;
 }
 
 cellDiv.forEach((cell) => cell.addEventListener('click', turn))
