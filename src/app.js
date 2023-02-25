@@ -1,6 +1,6 @@
 const app = document.getElementById('app')
 
-const winnigState = [
+const winnigStates = [
     [1, 5, 9],
     [3, 5, 7],
 
@@ -67,6 +67,9 @@ const drawCell = (element, xTurn) =>
 const saveTurn = (value, xTurn) =>
     xTurn ? xState.push(value) : oState.push(value);
 
+const checkWin = (winningState, state) =>
+    winningState.every((number) => state.includes(number));
+
 const turn = (event) => {
     const element = event.target;
     if (element.classList.contains('x') || element.classList.contains('o'))
@@ -76,6 +79,16 @@ const turn = (event) => {
 
     saveTurn(parseInt(element.dataset.id), xTurn);
 
+    winnigStates.forEach((winnigState) => {
+        const xWins = checkWin(winnigState, xState);
+        const oWins = checkWin(winnigState, oState);
+
+        if (xWins || oWins) {
+            resultText.textContent = xWins ? "X win!" : "O win!";
+
+            app.appendChild(result)
+        }
+    })
 
     if (xState.length + oState.length === 9) {
         app.appendChild(result);
