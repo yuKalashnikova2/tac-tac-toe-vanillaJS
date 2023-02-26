@@ -49,7 +49,7 @@ restartButton.addEventListener('click', () => {
 
     xState = [];
     oState = [];
-
+    resultText.textContent = 'Game over'
     xTurn = true
 })
 
