@@ -1,5 +1,5 @@
-import { Grid } from './src/component/Grid';
+import { App } from './src/component/App';
 
 const app = document.getElementById('app');
 
-app.appendChild(Grid());
+app.appendChild(App());
