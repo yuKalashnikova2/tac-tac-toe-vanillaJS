@@ -20,6 +20,9 @@ export const startGame = () => {
     const resetGame = () => { };
 
     return {
-        turn, resetGame
+        xState,
+        ostate,
+        turn,
+        resetGame
     };
 };
