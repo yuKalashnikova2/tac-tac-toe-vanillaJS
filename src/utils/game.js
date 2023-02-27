@@ -1,4 +1,5 @@
-import { turnIsRecorded } from '../utils/turn';
+import { turnIsRecorded, calculateWinner, calculateGameOver } from '../utils/turn';
+import { winningStates } from './consts'
 
 export const startGame = () => {
     let xState = [];
@@ -12,7 +13,13 @@ export const startGame = () => {
 
         xTurn ? xState.push(id) : oState.push(id);
 
-        element.classList.add(xTurn ? 'x' : 'o');
+        if (calculateGameOver([...xState, ...oState])) {
+            console.log('Game over!');
+
+            return;
+        }
+
+ 
 
         xTurn = !xTurn;
         console.log(xState, oState);
@@ -21,7 +28,7 @@ export const startGame = () => {
 
     return {
         xState,
-        ostate,
+        oState,
         turn,
         resetGame
     };
