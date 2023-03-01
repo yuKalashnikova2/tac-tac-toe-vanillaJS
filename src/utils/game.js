@@ -1,35 +1,44 @@
-import { turnIsRecorded, calculateWinner, calculateGameOver } from '../utils/turn';
-import { winningStates } from './consts'
+import { turnIsRecorded, calculateWinner, calculateGameOver } from './turn';
+import { winningStates } from './consts';
 
 export const startGame = () => {
-    let xState = [];
-    let oState = [];
+  let xState = [];
+  let oState = [];
+  let xTurn = true;
 
-    let xTurn = true;
+  const turn = ({ id, showGameResult }) => {
+    if (!id && id !== 0) return;
+    if (turnIsRecorded([...xState, ...oState], id)) return;
 
-    const turn = ({ id }) => {
+    xTurn ? xState.push(id) : oState.push(id);
 
-        if (turnIsRecorded([...xState, ...oState], id)) return;
+    const winner = calculateWinner({ xState, oState, winningStates });
+    if (winner) {
+      if (typeof showGameResult === 'function') {
+        showGameResult({
+          text: winner === 'x' ? 'X wins!' : 'O wins!',
+        });
+      }
 
-        xTurn ? xState.push(id) : oState.push(id);
-
-        if (calculateGameOver([...xState, ...oState])) {
-            console.log('Game over!');
-
-            return;
-        }
-
- 
-
-        xTurn = !xTurn;
-        console.log(xState, oState);
+      return;
     }
-    const resetGame = () => { };
 
-    return {
-        xState,
-        oState,
-        turn,
-        resetGame
-    };
+    if (calculateGameOver([...xState, ...oState])) {
+      if (typeof showGameResult === 'function') {
+        showGameResult({ text: 'Game over!' });
+      }
+
+      return;
+    }
+
+    xTurn = !xTurn;
+
+    // console.log(xState, oState);
+  };
+
+  return {
+    turn,
+    xState,
+    oState,
+  };
 };

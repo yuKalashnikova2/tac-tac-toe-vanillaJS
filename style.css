@@ -35,6 +35,7 @@ body {
 
 .cell:hover {
     background: #eeeeee;
+    cursor: pointer;
 }
 .cell:nth-child(-n + 3) {
     border-top: none;
