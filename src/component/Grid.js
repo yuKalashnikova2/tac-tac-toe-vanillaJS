@@ -2,6 +2,9 @@ import { Cell } from './Cell';
 
 
 export const Grid = ({ onClickCell }) => {
+    const gridParent = document.createElement('div');
+    gridParent.classList.add('grid');
+    
     const grid = document.createElement("div");
     grid.classList.add("grid");
 
@@ -10,6 +13,7 @@ export const Grid = ({ onClickCell }) => {
 
         grid.appendChild(cell);
     }
+    gridParent.appendChild(grid);
 
-    return grid;
+    return gridParent;
 }
