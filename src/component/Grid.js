@@ -1,19 +1,18 @@
-import { Cell } from './Cell';
-
+import { Cell } from './Cell'
 
 export const Grid = ({ onClickCell }) => {
-    const gridParent = document.createElement('div');
-    gridParent.classList.add('grid');
-    
-    const grid = document.createElement("div");
-    grid.classList.add("grid");
+  const gridParent = document.createElement('div')
+  gridParent.classList.add('grid')
 
-    for (let i = 0; i < 9; i++) {
-        const cell = Cell({ id: i, onClick: onClickCell })
+  const grid = document.createElement('div')
+  grid.classList.add('grid')
 
-        grid.appendChild(cell);
-    }
-    gridParent.appendChild(grid);
+  for (let i = 0; i < 9; i++) {
+    const cell = Cell({ id: i, onClick: onClickCell })
 
-    return gridParent;
+    grid.appendChild(cell)
+  }
+  gridParent.appendChild(grid)
+
+  return gridParent
 }
