@@ -1,93 +1,89 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 #app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #4BB1CF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #4bb1cf;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: 300px;
-    height: 300px;
-    background: white;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  width: 300px;
+  height: 300px;
+  background: white;
 }
 
 .cell {
-    border: 1px solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 45px;
-    cursor: pointer;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+  cursor: pointer;
 }
 
 .cell:hover {
-    background: #eeeeee;
-    cursor: pointer;
+  background: #eeeeee;
+  cursor: pointer;
 }
 .cell:nth-child(-n + 3) {
-    border-top: none;
-  }
+  border-top: none;
+}
 
 .cell:nth-child(3n) {
-    border-right: none;
-  }
+  border-right: none;
+}
 
-  .cell:nth-child(3n+1) {
-    border-left: none;
-  }
-  .cell:nth-last-of-type(-n + 3) {
-    border-bottom: none;
-  }
-  .x::after {
-    content: "❌";
-  }
-  .o::after {
-    content: "⭕";
-  }
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+.cell:nth-last-of-type(-n + 3) {
+  border-bottom: none;
+}
+.x::after {
+  content: '❌';
+}
+.o::after {
+  content: '⭕';
+}
 
-  /* .disabled {
-    background-color: transparent !important;
-    cursor: default !important;
-  } */
+.result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  font-size: 20px;
+}
 
-  .result {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #fff;
-    font-size: 20px;
-  }
-  
-  .result > p {
-    display: block;
-    margin: 0 0 15px;
-  }
+.result > p {
+  display: block;
+  margin: 0 0 15px;
+}
 
-  .btn {
-    width: 110px;
-    height: 50px;
-    border: 1px solid black;
-    font-size: 20px;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
+.btn {
+  width: 110px;
+  height: 50px;
+  border: 1px solid black;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
